@@ -7,7 +7,8 @@ import (
 )
 
 func main() {
-	cmd := exec.Command("ls")
+	// コマンドの引数は、,区切りで指定
+	cmd := exec.Command("docker", "images")
 
 	result, err := cmd.Output()
 
