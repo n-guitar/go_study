@@ -33,6 +33,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "json unmarshal err!: %v\n", err)
 		os.Exit(1)
 	}
+	fmt.Println(string(file))
 	for _, p := range person {
 		fmt.Printf("%sさん、%s歳　得意なことは%s\n", p.Name, p.Age, p.Ability.Programming)
 	}
