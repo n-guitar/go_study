@@ -24,7 +24,7 @@ root@mysql:/# mysql -uroot -proot
 
 sql操作
 ```sql
--- db一覧
+-- db一覧
 mysql> show databases;
 
 -- db作成
