@@ -1,6 +1,9 @@
 # 以下をすべて実行せよ
-※ Dockerfileが存在するディレクトリ上で実行
+- 内容  
+    一時的なmysqlコンテナの起動  
+    goappで使用するSQLの基本操作  
 
+※ Dockerfileが存在するディレクトリ上で実行  
 docker images作成
 ```bash
 $ docker build .
