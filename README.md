@@ -57,10 +57,10 @@ httpパッケージでGETした値を、変数に格納し、Bodyをioutilパッ
 # 第5回目 DB接続と操作
 `注意：自習問題 002 (docker tutorialとSQL操作)を完了していることが前提です`  
 - ex01
-  - DBに接続してtasksテーブルのselect結果を標準出力しなさい
+  - DBに接続してtasksテーブルのselect結果を標準出力しなさい  
   ※DBはMySQLを利用しています。ブランクインポートを利用してください。
 - ex02
-  - ex01を改修して、WEB上でselect結果を表示しなさい。
+  - ex01を改修して、WEB上でselect結果を表示しなさい。
 - ex03 
   - ex02を改修して、URLパラメータにNoをしているすると、そのレコードだけが表示されるようにしなさい。
   （例） http://localhost:port/task?no=1
