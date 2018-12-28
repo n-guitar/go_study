@@ -6,23 +6,30 @@
 ※ Dockerfileが存在するディレクトリ上で実行  
 docker images作成
 ```bash
-$ docker build .
+$ docker build -t docker_sample:001 .
+
+# docker imageの確認
+$ docker images | grep docker_sample
 ```
 
 mysqlコンテナ起動
 ※ --rm:コンテナ停止時に削除
 ```bash
-$ docker run --rm --name mysql --hostname mysql -e MYSQL_ROOT_PASSWORD=root mysql:8.0
+$ docker run --rm -d --name mysql_001 --hostname mysql_001 -e MYSQL_ROOT_PASSWORD=root docker_sample:001
+
+# Version: '5.7.22'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server (GPL)と表示されれば起動
+$ docker logs mysql_001
+
 ```
 
 コンテナログイン
 ```bash
-$ docker exec -it mysql /bin/bash
+$ docker exec -it mysql_001 /bin/bash
 ```
 
 dbログイン
 ```bash
-root@mysql:/# mysql -uroot -proot
+root@mysql_001:/# mysql -uroot -proot
 ```
 
 sql操作
@@ -32,23 +39,24 @@ mysql> show databases;
 
 -- db作成
 mysql> create database go_apps character set utf8mb4;
+
 mysql> show databases;
 
 -- user 作成
-mysql> create user 'go_user'@'localhost' identified by 'go_user';
+mysql> create user 'go_user'@'%' identified by 'go_user';
 mysql> select user, host from mysql.user;
 
 -- 権限の確認
-mysql> show grants for 'go_user'@'localhost';
+mysql> show grants for 'go_user'@'%';
 
 -- userにgo_apps dbのすべての権限を付与
-mysql> grant all on go_apps.* to 'go_user'@'localhost';
+mysql> grant all on go_apps.* to 'go_user'@'%';
 mysql> flush privileges;
-mysql> show grants for 'go_user'@'localhost';
+mysql> show grants for 'go_user'@'%';
 
 -- go_userでログイン
 mysql> exit
-root@mysql:/# mysql -ugo_user -pgo_user
+root@mysql_001:/# mysql -ugo_user -pgo_user
 mysql> show databases;
 
 -- db接続
@@ -84,6 +92,6 @@ mysql> show tables;
 コンテナ停止(削除)
 ```bash
 mysql> exit
-root@mysql:/# exit
-$ docker stop mysql
+root@mysql_001:/# exit
+$ docker stop mysql_001
 ```
