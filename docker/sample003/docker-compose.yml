@@ -1,0 +1,16 @@
+version: '3'
+services:
+  mysql:
+    container_name: mysql_003
+    hostname: 'mysql_003'
+    build: ./mysql
+    volumes:
+      - "./mysql/sql:/docker-entrypoint-initdb.d"
+      # dataを永続化する場合
+      # - "./db_storage:/var/lib/mysql"
+      # DB parameterを変更したい場合
+      # - "./mysql/cnf:/etc/mysql/conf.d"
+    env_file:
+      - ./env/db.env
+    ports:
+      - "3306:3306"
