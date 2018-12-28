@@ -54,7 +54,7 @@ httpパッケージでGETした値を、変数に格納し、Bodyをioutilパッ
   - [GitHubトレンド](https://github.com/trending)のTop10を教えて下さい。
   - 不要な情報は見たくないので、ex03で作ってプログラムを修正して「リポジトリ名」「スター数」だけを出力して下さい。
 
-# 自習問題
+# 自習問題 001 (アルゴリズムとbenchmark関数)
 本問題は『楽しく学ぶ アルゴリズムとプログラミングの図鑑』を参考にしてください。
 - ex01 (P75)
   - 合計値を求めるアルゴリズムを書きなさい
@@ -88,3 +88,18 @@ httpパッケージでGETした値を、変数に格納し、Bodyをioutilパッ
 - ex15 (オリジナル)
   - ex07〜ex11のプログラムをGo言語のbenchmark関数を使って計測しなさい  
 　※できるだけソートする値の前提条件を揃えて実施してください。
+
+# 自習問題 002 (docker tutorialとSQL操作)
+- ex01
+  - 以下のsampleを実施しなさい
+  - [docker sample001](/docker/sample001)
+- ex02
+  - 以下のsampleを実施しなさい
+  - [docker sample002](/docker/sample002)
+- ex03
+  - 以下のsampleを実施しなさい
+  - [docker sample003](/docker/sample003)
+
+
+
+
