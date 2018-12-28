@@ -54,6 +54,20 @@ httpパッケージでGETした値を、変数に格納し、Bodyをioutilパッ
   - [GitHubトレンド](https://github.com/trending)のTop10を教えて下さい。
   - 不要な情報は見たくないので、ex03で作ってプログラムを修正して「リポジトリ名」「スター数」だけを出力して下さい。
 
+# 第5回目 DB接続と操作
+`注意：自習問題 002 (docker tutorialとSQL操作)を完了していることが前提です`  
+- ex01
+  - DBに接続してtasksテーブルのselect結果を標準出力しなさい
+  ※DBはMySQLを利用しています。ブランクインポートを利用してください。
+- ex02
+  - ex01を改修して、WEB上でselect結果を表示しなさい。
+- ex03 
+  - ex02を改修して、URLパラメータにNoをしているすると、そのレコードだけが表示されるようにしなさい。
+  （例） http://localhost:port/task?no=1
+  - また、Noが表示しないときは、それがわかるようにしなさい。
+- ex04
+  - ex03を改修して、POSTメソッドでex03のURLにアクセスした時、tasksテーブルの特定のレコードのend_flagにendに更新されるようにしなさい。
+
 # 自習問題 001 (アルゴリズムとbenchmark関数)
 本問題は『楽しく学ぶ アルゴリズムとプログラミングの図鑑』を参考にしてください。
 - ex01 (P75)
@@ -91,14 +105,14 @@ httpパッケージでGETした値を、変数に格納し、Bodyをioutilパッ
 
 # 自習問題 002 (docker tutorialとSQL操作)
 - ex01
-  - 以下のsampleを実施しなさい
-  - [docker sample001](/docker/sample001)
+  - 以下のsampleを実施しなさい
+  - [docker sample001](/docker/sample001)
 - ex02
-  - 以下のsampleを実施しなさい
-  - [docker sample002](/docker/sample002)
+  - 以下のsampleを実施しなさい
+  - [docker sample002](/docker/sample002)
 - ex03
-  - 以下のsampleを実施しなさい
-  - [docker sample003](/docker/sample003)
+  - 以下のsampleを実施しなさい
+  - [docker sample003](/docker/sample003)
 
 
 
