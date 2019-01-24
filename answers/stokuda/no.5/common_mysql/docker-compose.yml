@@ -1,0 +1,12 @@
+version: '3'
+services:
+  mysql:
+    container_name: mysql
+    hostname: 'mysql'
+    build: ./mysql
+    volumes:
+      - "./mysql/sql:/docker-entrypoint-initdb.d"
+    env_file:
+      - ./env/db.env
+    ports:
+      - "3306:3306"
