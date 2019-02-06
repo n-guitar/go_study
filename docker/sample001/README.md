@@ -10,6 +10,7 @@ $ docker build -t docker_sample:001 .
 
 # docker imageの確認
 $ docker images | grep docker_sample
+(Powershellの場合：docker images | Select-String "docker_sample")
 ```
 
 mysqlコンテナ起動
