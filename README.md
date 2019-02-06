@@ -74,12 +74,14 @@ httpパッケージでGETした値を、変数に格納し、Bodyをioutilパッ
   [sampleプログラム](/sample/sample005)
 - ex02 (テストコード)
   - ex01の処理が正しいことを証明するためにテスト関数を書きなさい。  
+  ※testing packageを使いなさい  
 - ex03 (可変個引数関数)
   - 以下のサンプルプログラムを改修して、引数から入力を受け付けるようにしなさい。  
   - また任意の個数の引数を受け付けるようにしなさい。  
   [sampleプログラム](/sample/sample005)  
 - ex04 (処理の分割)  
   - 以下のサンプルプログラムを改修して、sha256,sha384,sha512それぞれ独立した関数に分割しなさい。  
+  例えば、func sha256(XXX) XXX、func sha384(XXX) XXX、func sha512(XXX) XXXのようにしなさい。  
   [sampleプログラム](/sample/sample006)
 
 
