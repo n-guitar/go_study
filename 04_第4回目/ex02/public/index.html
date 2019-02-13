@@ -1,0 +1,624 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta name="description" content="中日ドラゴンズの公式サイト。試合速報やチームデータ、チケット情報やイベント情報など。" />
+<meta name="keywords" content="" />
+<title>中日ドラゴンズ 公式サイト</title>
+<link rel="stylesheet" type="text/css" href="/css/foundation2018.css" media="all" />
+<!--[if IE]>
+<link rel="stylesheet" type="text/css" href="/css/foundation-ie.min.css" media="all" />
+<![endif]-->
+<script type="text/javascript" src="/js/script.min.js"></script>
+<script type="text/javascript" src="/js/slider.js.php"></script>
+<script type="text/javascript" src="/js/jquery.tile.min.js"></script>
+<!--[if lt IE 7]>
+<script type="text/javascript" src="/js/polyfill_ie6.js"></script>
+<![endif]-->
+<!--[if (gte IE 6)&(lte IE 8)]>
+<script type="text/javascript" src="/js/selectivizr-min.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+(function($) {
+  /**
+   * mobile redirect
+   */
+  function redirect_to_mobile () {
+    var ua = navigator.userAgent;
+    var mobile_re = /(android|iphone).+(mobile)/i;
+    if (mobile_re.test(ua)) {
+      location.href = 'http://sp.chunichi.co.jp/dra/';
+    }
+  }
+
+  if (location.hash === "#deny_mobile_redirect") {
+    $.cookie('mobile_redirect', 'deny', {expires: 30});
+  }
+
+  if ($.cookie('mobile_redirect') !== 'deny') {
+    redirect_to_mobile();
+  }
+  /* schedule */
+  $(window).load(function(){
+    $('.top-scheduleL li').tile(7);
+  });
+
+})(jQuery);
+</script>
+</head>
+
+<body id="home">
+<div id="fb-root"></div>
+<!--Facebook-->
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.6";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!--/Facebook-->
+<div id="TOP" class="wrapper">
+<!--ヘッダ-->
+<div id="header" class="header">
+<div class="head-top">
+<!--ドラゴンズ　ロゴ-->
+<div class="head-logo-sp"><a href="/"><img src="/image/dra/logo-dragons.png" width="131" height="52" alt="中日ドラゴンズ 公式サイト - HOME" /></a></div>
+<div class="head-sublogo-sp" style="width:125px;"><img src="/image/dra/logo-officialsite.png" width="108" height="52" alt="CHUNICHI DRAGONS OFFICIAL WEBSITE" /></div>
+<div class="head-sublogo-sp" style="width:125px; margin-top:3px;"><img src="/image/dra/slogan2019.png" width="113" height="70" alt="2019年スローガン「昇竜復活」" /></div>
+<!--/ドラゴンズ　ロゴ-->
+<!-- SNS -->
+<div class="head-subArea clearfix">
+<a href="https://www.facebook.com/chunichi.dragons.official/" target="_new"><img src="/image/dra/2018/iconFacebook-white.svg" width="21" height="21" alt="Facebook" title="Facebook" class="imgB"></a>
+<a href="https://twitter.com/DragonsOfficial" target="_new"><img src="/image/dra/2018/iconTwitter-white.svg" width="32" height="32" alt="Twitter" title="Twitter"></a>
+<a href="https://www.youtube.com/user/DRAGONSWEBMASTER" target="_new"><img src="/image/dra/2018/iconYoutube-white.svg" width="22" height="15" alt="Youtube" title="Youtube"></a>
+<a href="/community/"><img src="/image/dra/2018/iconBall-white.svg" width="18" height="18" alt="地域貢献活動" style="vertical-align:bottom;"> 地域貢献活動</a>
+<a href="https://drafanclub.flpjp.com/" target="_new"><img src="/image/dra/2018/iconUser-white.svg" width="18" height="16" alt="公式ファンクラブ マイページ" style="vertical-align:bottom;"> FCマイページ</a>
+</div>
+<!-- /SNS -->
+</div>
+<!--グランドナビ-->
+<div class="grand-navi">
+<ul class="grand-navi clearfix">
+<li><a href="/news/" onClick="ga('send', 'event', 'TOP', 'GNB-click', 'GNB-news');">ニュース</a></li>
+<li><a href="/game/" onClick="ga('send', 'event', 'TOP', 'GNB-click', 'GNB-game');">試合情報</a></li>
+<li><a href="/ticket/" onClick="ga('send', 'event', 'TOP', 'GNB-click', 'GNB-ticket');">チケット</a></li>
+<li><a href="/teamdata/" onClick="ga('send', 'event', 'TOP', 'GNB-click', 'GNB-teamdata');">チームデータ</a></li>
+<li><a href="/farm/" onClick="ga('send', 'event', 'TOP', 'GNB-click', 'GNB-farm');">ファーム</a></li>
+<li><a href="/fan/" onClick="ga('send', 'event', 'TOP', 'GNB-click', 'GNB-fan');">ファンエンタメ</a></li>
+<li><a href="/nagoyadome/" onClick="ga('send', 'event', 'TOP', 'GNB-click', 'GNB-nagoyadome');">ナゴヤドーム</a></li>
+<li><a href="/shop/" onClick="ga('send', 'event', 'TOP', 'GNB-click', 'GNB-shop');">グッズショップ</a></li>
+<li><a href="http://drafanclub.jp/" onClick="ga('send', 'event', 'TOP', 'GNB-click', 'GNB-fanclub');">ファンクラブ</a></li>
+<li><a href="/sponsor/" onClick="ga('send', 'event', 'TOP', 'GNB-click', 'GNB-sponsor');">スポンサー</a></li>
+</ul>
+</div>
+<!--/グランドナビ-->
+</div>
+
+<!--/ヘッダ-->
+
+<!--メイン-->
+<div id="main" class="main">
+
+<!-- TOP 上部エリア -->
+<div class="container clearfix" id="topUpside">
+<!-- TOP 上部エリア 左 -->
+<div id="topUpsideL">
+<!-- headline -->
+<div id="headlineW900" class="wMax">
+<div class="back-area"></div>
+<div class="ticker-area">
+<div class="ticker-item"></div>
+</div>
+</div>
+<!-- メイン画像 -->
+<div id="sliderWrap" class="mgB15">
+<ul class="clearfix">
+</ul>
+</div>
+<!-- /メイン画像 -->
+
+        <!-- ドラゴンズニュース -->
+        <div class="newsArea mgT30">
+        <h2 class="h2Top">ドラゴンズニュース<span class="h2Link"><a href="/news/" class="arrowRlink">more</a></span></h2>
+        <div class="top-dranews w600">
+        <div id="newsScroll">
+        <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+        <div class="viewport">
+        <div class="overview">
+        <ul>
+        <li class="release"><span>2018/12/28</span><a href="/junior/jr/2018/18122802.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">ドラゴンズジュニアチーム 12球団ジュニアトーナメント第2試合</a></li>
+<li class="release"><span>2018/12/28</span><a href="/junior/jr/2018/18122801.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">ドラゴンズジュニアチーム 12球団ジュニアトーナメント第1試合</a></li>
+<li class="event"><span>2018/12/28</span><a href="/news/2019/mascotevent.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">マスコット・チアドラゴンズ　1月参加イベント情報を更新</a></li>
+<li class="event"><span>2018/12/27</span><a href="/news/2018/mascotevent-dec.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">マスコット・チアドラゴンズ　12月参加イベント情報を更新</a></li>
+<li class="release"><span>2018/12/27</span><a href="/junior/jr/2018/181227.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">ドラゴンズジュニアチーム 12球団ジュニアトーナメント開会式</a></li>
+<li class="event"><span>2018/12/27</span><a href="/news/2018/18122701.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">「2019!新春 ドラゴンズ応援イベント in エディオン名古屋本店」を開催</a></li>
+<li class="dome"><span>2018/12/26</span><a href="/nagoyadome/baseballmates.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">2019年ベースボールメイツ募集中！締切1月10日まで</a></li>
+<li class="release"><span>2018/12/26</span><a href="/news/2018/18122601.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">シルク・ドゥ・ソレイユ『ダイハツ キュリオス』名古屋公演 ハタチ de KURIOS にドアラが登場！</a></li>
+<li class="campaign"><span>2018/12/26</span><a href="/news/2018/campaign-lachic13-1229.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">12/29(土) IWASE HITOKI イワっしゃいましたデー！開催</a></li>
+<li class="ticket"><span>2018/12/25</span><a href="/news/2018/18122502.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">シーズンシートオーナー様へのご案内</a></li>
+<li class="release"><span>2018/12/25</span><a href="/news/2018/18122501.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">球団事務所、年末年始営業日のお知らせ</a></li>
+<li class="release"><span>2018/12/25</span><a href="/junior/jr/2018/181223.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">ドラゴンズジュニアチーム 東山クラブと練習試合</a></li>
+<li class="release"><span>2018/12/22</span><a href="/fan/magazine.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">月刊ドラゴンズ1月号のご紹介</a></li>
+<li class="goods"><span>2018/12/21</span><a href="/news/2018/2019dinnershow-goods.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">「つば九郎・ドアラ　ディナーショー」グッズ販売のお知らせ</a></li>
+<li class="team"><span>2018/12/19</span><a href="/news/2018/18121901.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">契約更改のお知らせ</a></li>
+<li class="campaign"><span>2018/12/19</span><a href="/news/2018/campaign-aeon201901.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">イオンモールナゴヤドーム前にて、新春ドラゴンズイベント開催！</a></li>
+<li class="event"><span>2018/12/19</span><a href="/news/2018/playerevent.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">選手参加イベント情報を更新</a></li>
+<li class="event"><span>2018/12/19</span><a href="/news/2019/mascotevent.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">マスコット・チアドラゴンズ　参加イベント情報</a></li>
+<li class="release"><span>2018/12/18</span><a href="/community/withdragons/news/18121801.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">谷元選手・大野奨選ら6選手が北海道の被災地を訪問</a></li>
+<li class="release"><span>2018/12/18</span><a href="/community/withdragons/news/18121802.html" onClick="ga('send', 'event', 'TOP', 'News-click', 'News-all');">山井選手が東日本大震災の被災地を訪問</a></li>
+
+        </ul>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <!-- /ドラゴンズニュース -->
+
+<!-- チケット -->
+<!--//#include virtual="/_data/top_ticket1.ssi"-->
+<!-- /チケット -->
+</div><!-- #topUpsideL -->
+<!-- /TOP 上部エリア 左 -->
+
+<!-- TOP 上部エリア 右 -->
+<div id="topUpsideR">
+<!-- イベントバナー・youtube等 -->
+<div class="clearfix" style="margin-top:33px;"	>
+<!-- 1column -->
+<div>
+<a href="/ticket/seasonseat/"><img src="/news/2018/image/top-main_seasonseat2019.jpg" width="380" alt="シーズンシート2019"></a>
+</div>
+<div class="mgT10">
+<div><a href="http://drafanclub.jp/about/"><img src="/news/2018/image/bnr-join2019_vol4.jpg" width="380" alt="ファンクラブ会員募集中" /></a></div>
+</div>
+<div class="mgT10">
+<div><a href="/news/2018/goods-dragonscalendar.html"><img src="/news/2018/image/bnr-calendar2019_h237.jpg" width="380" alt="中日ドラゴンズカレンダー2019" /></a></div>
+</div>
+<!-- movie -->
+<div class="mgT10 center">
+<iframe width="380" height="214" src="https://www.youtube.com/embed/macjt8yzQHs?rel=0&amp;showinfo=0&amp;controls=0" frameborder="0" allow="encrypted-media;" allowfullscreen></iframe>
+</div>
+</div>
+
+<!-- /イベントバナー・youtube等 -->
+</div><!-- #topUpsideR -->
+<!-- /TOP 上部エリア 右 -->
+
+</div><!-- /.container #topUpside -->
+<!-- /TOP 上部エリア -->
+
+<div id="top-contents">
+  <div class="contWrap">
+    <div class="cont760">
+      <div id="superbanner" class="border">
+        <!--ad-->
+<script type="text/javascript">
+var outAdStr = "";var adN=8;
+var numAd; numAd=parseInt(Math.random()*adN+1);
+if(numAd>=1 && numAd<=4){outAdStr = "<a href='https://prf.hn/click/camref:1011l3MFf/creativeref:1011l20497' ><img src='http://dragons.jp/image/b_ad3dazn180901_760.jpg' alt='ドラゴンズをDAZNで観よう！ | DAZN JP' title='ドラゴンズをDAZNで観よう！ | DAZN JP' width=760 height=100 border=0 hspace=0 vspace=0></a>";}
+if(numAd>=5 && numAd<=8){outAdStr = "<a href='http://r.ca-mpr.jp/s/814/?i4a=42712' ><img src='http://dragons.jp/image/b_ad1jsports180305_760.png' alt='ドラゴンズ戦見るなら J SPORTS' title='ドラゴンズ戦見るなら J SPORTS' width=760 height=100 border=0 hspace=0 vspace=0></a>";}
+if(numAd>=9){outAdStr = "<a href='http://www.doracale.jp/' ><img src='http://dragons.jp/image/b_ad2calendar2019_700.jpg' alt='中日ドラゴンズカレンダー2019' title='中日ドラゴンズカレンダー2019' width=760 height=100 border=0 hspace=0 vspace=0></a>";}
+self.document.write(outAdStr);
+self.document.close();
+</script>
+<!--ad-->
+
+      </div>
+        <!-- ドラゴンズニュース -->
+        <!--
+        <div class="newsArea mgT30">
+        <h2 class="h2Top">ドラゴンズニュース<span class="h2Link"><a href="/news/" class="arrowRlink">more</a></span></h2>
+        <div class="top-dranews">
+        <div id="newsScroll">
+        <div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+        <div class="viewport">
+        <div class="overview">
+        <ul>
+        -->
+        <!--//#include virtual="/_data/top_news.ssi"-->
+        <!--
+        </ul>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        -->
+        <!-- /ドラゴンズニュース -->
+
+        <!-- スケジュール -->
+        <!--
+        <div class="top-scheduleL">
+        <h2 class="h2Top">スケジュール<span class="h2Link"><a href="/game/schedule/" class="arrowRlink">more</a></span></h2>
+        <ul class="clearfix">
+        -->
+        <!--//#include virtual="/_data/top_schedule2018.ssi"-->
+        <!--
+        </ul>
+        </div>
+        -->
+        <!-- /スケジュール -->
+
+        <!-- プレイバックギャラリー -->
+        <div id="playbackgallery2018" class="clearfix">
+<a href="/game/gallery/2018/index.php?month=3">
+<div class="thumb"><img src="/game/gallery/image/2018/top/23.jpg" width="150" height="250"></div><div class="thumb"><img src="/game/gallery/image/2018/top/21.jpg" width="150" height="250"></div><div class="thumb"><img src="/game/gallery/image/2018/top/62.jpg" width="150" height="250"></div></a>
+</div>
+
+        <!-- /プレイバックギャラリー -->
+
+        <!-- ピックアップ -->
+        <div class="row">
+        <div id="top-pickup" class="col3">
+        <h2 class="h2Top">ピックアップ</h2>
+        <div class="inner">
+        <ul>
+<li>
+<a href="http://www.kidsdragons.net/" target="_blank" onClick="ga('send', 'event', 'TOP', 'Pickup-click', 'Pickup-DBA');">
+<img src="/image/dra/2018/top-pickup_DBA_600x380.jpg" alt="ドラゴンズベースボールアカデミー" />
+<p>キッズコース・新規会員募集及び練習体験のお申し込みを受け付けています。</p>
+</a>
+</li>
+<li>
+<a href="http://dragonsshop.info/" onClick="ga('send', 'event', 'TOP', 'Pickup-click', 'Pickup-online shop');" target="_blank">
+<img src="/image/dra/2018/top-pickup_onlineshop_600x380.jpg" alt="ドラゴンズオンラインショップ" />
+<p>選手やマスコットの新商品が続々入荷！定番の応援グッズやユニホームなど新グッズも盛りだくさん！！</p>
+</a>
+</li>
+<li>
+<a href="https://seatowner.dragons.jp/" onClick="ga('send', 'event', 'TOP', 'Pickup-click', 'Pickup-season seat');" target="_blank">
+<img src="/image/dra/2018/top-pickup_seasonseat_600x380.jpg" alt="シーズンシートオーナーズサイト" />
+<p>前売りチケット、駐車券の優先販売、イベント情報やイベント参加応募など各種お知らせを掲載いたします。</p>
+</a>
+</li>
+<li>
+<a href="/junior/" onClick="ga('send', 'event', 'TOP', 'Pickup-click', 'Pickup-junior');">
+<img src="/image/dra/2018/top-pickup_juniorbaseball_600x380.jpg" alt="ドラゴンズジュニアベースボール" />
+<p>「NPB12球団ジュニアトーナメント」や「中日ドラゴンズカップ」などジュニアの情報を掲載しています。</p>
+</a>
+</li>
+<li>
+<a href="/junior/kids/" onClick="ga('send', 'event', 'TOP', 'Pickup-click', 'Pickup-kids');">
+<img src="/image/dra/2018/top-pickup_dbaexperience.jpg?181213" alt="ドラゴンズベースボールアカデミー「キッズコース入校体験会」" />
+<p>ドラゴンズベースボールアカデミー キッズコースの入校体験会を開催します。応募要項などを詳しくはこちら</p>
+</a>
+</li>
+<li>
+<a href="/junior/jr/" onClick="ga('send', 'event', 'TOP', 'Pickup-click', 'Pickup-jr');">
+<img src="/image/dra/2018/top-pickup_jr2018-v2.jpg" alt="ドラゴンズジュニア2018" />
+<p>NPB12球団ジュニアトーナメント2018のドラゴンズジュニアチームの情報を掲載しています。</p>
+</a>
+</li>
+<li>
+<a href="/community/withdragons/" onClick="ga('send', 'event', 'TOP', 'Pickup-click', 'Pickup-withdragons');">
+<img src="/image/dra/2018/top-pickup_withdragons.jpg" alt="with Dragons" />
+<p>中日ドラゴンズの地域貢献、社会貢献活動の様子などをご紹介します。</p>
+</a>
+</li>
+<li>
+<a href="/blog/" onClick="ga('send', 'event', 'TOP', 'Pickup-click', 'Pickup-blogsns');">
+<img src="/image/dra/2018/top-pickup_blog_600x380.jpg" alt="ブログ＆SNS一覧" />
+<p>オフィシャルのブログやSNSなどの情報・お楽しみコンテンツを一覧で紹介しています。</p>
+</a>
+</li>
+<li>
+<a href="http://cg.printing.ne.jp/contents/contents_title/194.html" onClick="ga('send', 'event', 'TOP', 'Pickup-click', 'Pickup-drapri');" target="_blank">
+<img src="/image/dra/2018/top-pickup_drapri_600x380.jpg" alt="公式プリント「どらプリ」" />
+<p>選手のプレーや勝利の瞬間の写真が盛りだくさん！公式ネットプリントサービスです。</p>
+</a>
+</li>
+<!--
+<li>
+<a href="/ticket/plan/" onClick="ga('send', 'event', 'TOP', 'Pickup-click', 'Pickup-planticket');">
+<img src="/image/dra/2018/top-main_planticket.jpg" alt="企画チケット" />
+<p>チケットにプラスαの特典が付いてお得に観戦できる企画チケットを紹介しています。</p>
+</a>
+</li>
+<li>
+<a href="/junior/kids/" onClick="ga('send', 'event', 'TOP', 'Pickup-click', 'Pickup-kids');">
+<img src="/image/dra/2018/top-pickup_kidsbaseball_600x380.jpg" alt="DBAキッズ野球教室" />
+<p>「ドラゴンズベースボールアカデミー キッズ野球教室」の開催要項、スケジュールを掲載しています。</p>
+</a>
+</li>
+<li>
+<a href="/junior/cup/" onClick="ga('send', 'event', 'TOP', 'Pickup-click', 'Pickup-cup');">
+<img src="/image/dra/2018/top-pickup_dragonscup.jpg" alt="中日ドラゴンズカップ" />
+<p>中学硬式野球大会「U-15中日ドラゴンズカップ」の大会概要を掲載しています。</p>
+</a>
+</li>
+<li>
+<a href="/news/2017/yudai-monthlyinvitation.html" onClick="ga('send', 'event', 'TOP', 'Pickup-click', 'Pickup-onoproject');">
+<img src="/image/dra/2018/top-pickup_yudai-monthlyinvitation_600x380.jpg" width="320" alt="大野雄大 招待プロジェクト -Yudai’s Monthly Invitation-" />
+<p>大野雄大選手がひとり親のご家族を毎月1回招待する「大野雄大 招待プロジェクト -Yudai’s Monthly Invitation-」</p>
+</a>
+</li>
+<li>
+<a href="/junior/dba-experience.html" onClick="ga('send', 'event', 'TOP', 'Pickup-click', 'Pickup-experience');">
+<img src="/image/dra/2018/top-pickup_dbaexperience_600x380.jpg" width="320" alt="DBAキッズコース入校体験会" />
+<p>ドラゴンズベースボールアカデミーのキッズコース入校体験会を開催します。</p>
+</a>
+</li>
+-->
+</ul>
+        </div>
+        </div>
+        </div>
+        <!-- /ピックアップ -->
+
+        <!-- スペシャルイベント -->
+        <!-- <div class="top-specialEvent">
+        <h2 class="h2Top">スペシャルイベント<span class="h2Link"><a href="/fan/event/special.html" class="arrowRlink">more</a></span></h2>
+        <ul class="clearfix"> -->
+        <!--//#include virtual="/_data/top_specialevent.ssi"-->
+        <!-- </ul>
+        </div> -->
+        <!--/スペシャルイベント -->
+
+    </div><!-- /760 -->
+
+    <!-- ad -->
+    <div class="cont200 mgB20">
+    <!--広告-->
+<script type="text/javascript">
+
+var outAdStr = "";var adN=5;
+var numAd; numAd=parseInt(Math.random()*adN+1);
+
+if(numAd<=2){
+	var numTabi=parseInt(Math.random()*9+1);
+	if(numTabi<=1){
+		outAdStr += "<a href='http://yado.dragons.jp/dom/s/'><img src='http://dragons.jp/image/b_adsqb_tabi1106-plane.gif' width='200' height='200' alt='ドラゴンズ観戦旅行に行こう！ -- 旅くら 宿・ホテル比較＆検索' title='ドラゴンズ観戦旅行に行こう！ -- 旅くら 宿・ホテル比較＆検索'></a>";
+	}else{
+		outAdStr += "<a href='http://yado.dragons.jp/dom/s/'><img src='http://dragons.jp/image/b_adsqb_tabi1106-bus.gif' width='200' height='200' alt='ドラゴンズ観戦旅行に行こう！ -- 旅くら 宿・ホテル比較＆検索' title='ドラゴンズ観戦旅行に行こう！ -- 旅くら 宿・ホテル比較＆検索'></a>";
+	}
+}
+
+if(numAd>=3){
+	outAdStr += "<a href='https://prf.hn/click/camref:1011l3MFf/creativeref:1011l20497'><img src='http://dragons.jp/image/b_adsq5_dazn180901.jpg' width='200' height='200' alt='ドラゴンズをDAZNで観よう！' title='ドラゴンズをDAZNで観よう！'></a>";
+}
+
+self.document.write(outAdStr);
+self.document.close();
+</script>
+<!--広告-->
+
+    
+<!--
+<a href='http://www.facebook.com/chunichi.dragons.official'><img src='/image/banner-top_type2-facebook.jpg' width='200' height='110' alt='中日ドラゴンズ オフィシャルFacebookページ' title='中日ドラゴンズ オフィシャルFacebookページ' /></a>
+-->
+
+    <div class="banners group_b">
+<!--card-->
+<script type="text/javascript">
+var outAdStr = "";var adN=2;var numAd; numAd=parseInt(Math.random()*adN+1);
+var outAdStr1 = "<a href='http://www.jcb.co.jp/ordercard/teikei/celeague_card.html' target='_blank'><img src='/image/banner-top_type1-jcb_dragons.png' width='200' height='50' alt='JCBドラゴンズカード' title='JCBドラゴンズカード' /></a>";
+var outAdStr2 = "<a href='http://ac.ebis.ne.jp/tr_set.php?argument=f56Gh5rf&ai=DraOff_01' target='_blank'><img src='/image/banner-top_type1-ucs_dragons2017.jpg' width='200' height='50' alt='ＵＣＳドラゴンズカード' title='ＵＣＳドラゴンズカード' /></a>";
+if(numAd<=1){outAdStr += outAdStr1;outAdStr += outAdStr2;}
+if(numAd>=2){outAdStr += outAdStr2;outAdStr += outAdStr1;}
+self.document.write(outAdStr);
+self.document.close();
+</script>
+<!--card-->
+
+<a href="https://shop.yabaton.jp/" target="_blank"><img src="/image/banner-top_type1-yabaton+.gif" width="200" height="50" alt="名古屋名物みそかつ 矢場とん" title="名古屋名物みそかつ 矢場とん" /></a>
+<a href="http://npb.jp/" target="_blank"><img src="/image/banner-top_type1-npb.gif" width="200" height="50" alt="社団法人 日本野球機構" title="社団法人 日本野球機構" /></a>
+<a href="http://www.japan-baseball.jp/" target="_blank"><img src="/image/banner-top_type1-samuraijapan2019.jpg" width="200" height="50" alt="ENEOS侍ジャパンシリーズ2019 日本vsメキシコ" title="ENEOS侍ジャパンシリーズ2019 日本vsメキシコ" /></a>
+<a href="http://www.chunichi.co.jp/chuspo/" target="_blank"><img src="/image/banner-top_type1-chu_spo.gif" width="200" height="50" alt="中日スポーツ" title="中日スポーツ" /></a>
+<a href="http://www.nagoya-dome.co.jp/" target="_blank"><img src="/image/banner-top_type1-nagoyadome.gif" width="200" height="50" alt="ナゴヤドーム" title="ナゴヤドーム" /></a>
+<!--期間限定-->
+<a href="/nagoyadome/baseballmates.html"><img src="/news/2018/image/top-main_baseballmates2019-boshu.jpg" width="200" alt="2019年ベースボールメイツ募集中" /></a>
+<!--/期間限定-->
+<!--<a href="http://www.jcb.co.jp/home/teikei/dragonsfan_card.html" target="_blank"><img src="/image/banner-top_type1-jcb_dragons_fan.gif" width="200" height="50" alt="JCBドラゴンズカード" /></a>-->
+<!--<a href="http://www.jcb.co.jp/home/teikei/dragons_card.html" target="_blank"><img src="/image/banner-top_type1-jcb_dragons_official.gif" width="200" height="50" alt="セ・リーグオフィシャル　JCBドラゴンズカード" /></a>-->
+</div>
+
+    </div>
+    <!-- /ad -->
+
+    <div class="clear">
+      <!-- ピックアップ -->
+      <!--
+      <div class="row">
+      <div id="top-pickup">
+      <h2 class="h2Top">ピックアップ</h2>
+      <div class="inner">
+      -->
+      <!--//#include virtual="/_data/top_pickup.ssi"-->
+      <!--
+      </div>
+      </div>
+      </div>
+    -->
+      <!-- /ピックアップ -->
+      <!-- お知らせ -->
+      <!-- <div class="row"> -->
+        <!--//#include virtual="/_data/top_information.ssi"-->
+      <!-- </div> -->
+      <!-- /お知らせ -->
+    </div>
+
+    <div class="clear">
+
+      <!-- オフィシャルパートナー -->
+      <div class="row">
+        <div class="span700" id="top-sponsor">
+          <!-- オフィシャル・パートナー -->
+          <div class="content mgB20" id="partner">
+            <div class="mgB10">
+              <a href="/sponsor/"><img src="image/dra/2018/top_OfficialPartners980.jpg" width="980" alt="オフィシャル・パートナー" /></a>
+            </div>
+            <!-- 前文 -->
+            <p class="read">オフィシャル・パートナーは、中日ドラゴンズの球団理念や活動指針にご賛同いただいた企業様です。オフィシャル・スポンサーは、活動に対して協賛をいただいた企業様です。互いに企業価値を高め、野球文化を通して地域社会に貢献し、ご来場のお客様を始め地域から必要とされることを活動内容としています。</p>
+<ul>
+<li>
+<a href="http://www.edion.co.jp/" target="_blank"><img src="/sponsor/image/2018/logo-op_edion.jpg" width="300" alt="株式会社エディオン" /></a>
+<p class="f125 mgT5">株式会社エディオン</p>
+</li>
+<li>
+<a href="http://www.chunichi.co.jp/" target="_blank"><img src="/sponsor/image/2018/logo-op_chunichi.jpg" width="300" alt="株式会社中日新聞社" /></a>
+<p class="f125 mgT5 mgB0">株式会社中日新聞社</p>
+</li>
+<li>
+<a href="https://www.goo-net.com/" target="_blank"><img src="/sponsor/image/2018/logo-op_proto.jpg" width="300" alt="株式会社プロトコーポレーション" /></a>
+<p class="f125 mgT5">株式会社プロトコーポレーション</p>
+</li>
+<li>
+<a href="https://www.mizuno.jp/baseball/" target="_blank"><img src="/sponsor/image/2018/logo-op_mizuno.jpg" width="300" alt="ミズノ株式会社" /></a>
+<p class="f125 mgT5">ミズノ株式会社</p>
+</li>
+</ul>
+            </div>
+
+          <!-- オフィシャル・スポンサー -->
+          <div class="content mgB10" id="sponsor">
+            <div class="mgB10">
+              <a href="/sponsor/"><img src="image/dra/2018/top_OfficialSponsor980.jpg" width="980" alt="オフィシャル・スポンサー" /></a>
+            </div>
+            <ul style="text-align:left;">
+<li>
+<a href="http://www.asahibeer.co.jp/" target="_blank"><img src="/sponsor/image/2018/logo-os_asahi.jpg" width="153" alt="アサヒビール株式会社" /></a>
+<p class="mgT5">アサヒビール株式会社</p>
+</li>
+<li>
+<a href="http://www.aeon.jp/sc/nagoyadomemae/" target="_blank"><img src="/sponsor/image/2018/logo-os_aeon.jpg" width="153" alt="イオンモールナゴヤドーム前" /></a>
+<p class="mgT5">イオンモールナゴヤドーム前</p>
+</li>
+<li>
+<a href="http://www.jsports.co.jp/baseball/" target="_blank"><img src="/sponsor/image/2018/logo-os_jsports.jpg" width="153" alt="株式会社ジェイ・スポーツ" /></a>
+<p class="mgT5">株式会社ジェイ・スポーツ</p>
+</li>
+<li>
+<a href="http://www.tohmei.com/" target="_blank"><img src="/sponsor/image/2018/logo-os_tohmei.jpg" width="153" alt="東明グループ" /></a>
+<p class="mgT5">東明グループ</p>
+</li>
+<li>
+<a href="http://www.uny.co.jp" target="_blank"><img src="/sponsor/image/2018/logo-os_apita.jpg" width="153" alt="ユニー株式会社" /></a>
+<p class="mgT5">ユニー株式会社</p>
+</li>
+<li>
+<a href="https://www.lawson.co.jp/index.html" target="_blank"><img src="/sponsor/image/2018/logo-os_lawson.jpg" width="153" alt="株式会社ローソン" /></a>
+<p class="mgT5">株式会社ローソン</p>
+</li>
+</ul>
+          </div>
+
+          <!-- ビジネス・サポーター -->
+          <div class="content mgB20" id="supporters">
+            <div class="mgB10">
+              <a href="/sponsor/"><img src="image/dra/2018/top_BusinessSupporters980.jpg" width="980" alt="ビジネス・サポーター" /></a>
+            </div>
+            <ul>
+<li><a href="http://www.aeonretail.jp/" target="_blank"><img src="/sponsor/image/2018/logo-bs_aeonretail.jpg" width="153" alt="イオンリテール株式会社" /></a></li>
+<li><a href="http://www.ecosmile-e.co.jp/" target="_blank"><img src="/sponsor/image/2018/logo-bs_ecosmile.jpg" width="153" alt="株式会社エコスマイル" /></a></li>
+<li><a href="http://ha.athuman.com/sports/" target="_blank"><img src="/sponsor/image/2018/logo-bs_athuman.jpg" width="153" alt="総合学園ヒューマンアカデミー" /></a></li>
+<li><a href="http://www.touei.co.jp/" target="_blank"><img src="/sponsor/image/2018/logo-bs_touei.jpg" width="153" alt="株式会社東栄住宅" /></a></li>
+<li><a href="http://www.matsugyuyaki.jp/index.html" target="_blank"><img src="/sponsor/image/2018/logo-bs_chikkidouan.jpg" width="153" alt="三重松阪 竹輝銅庵" /></a></li>
+<li><a href="http://www.mwt.co.jp" target="_blank"><img src="/sponsor/image/2018/logo-bs_mwt.jpg" width="153" alt="名鉄観光サービス株式会社" /></a></li>
+</ul>
+          </div>
+
+          <!-- ゲーム・スポンサー -->
+          <div class="content" id="supporters">
+            <div class="mgB20">
+              <img src="image/dra/2018/top_GameSponsor980.jpg" width="980" alt="ゲーム・スポンサー" />
+            </div>
+          </div>
+          <div class="mgR10 mgL10">
+          <p class="mgB10">ゲームスポンサーは、ナゴヤドームで開催する中日ドラゴンズの公式戦を起点として、地域とスポーツの振興にご理解とご協賛をいただく企業・団体様です。</p>
+          <a href="/sponsor/#game" class="list f125">2018年のゲームスポンサーはこちら</a>
+          </div>
+        </div>
+      </div>
+      <!-- /オフィシャルパートナー -->
+
+      <div class="row center mgT80">
+        <a href="/fan/cheerdra-kids/"><img src="/image/dra/2018/bnr-cheerdra-dancelesson.jpg" width="700" height="100" alt="チアドラゴンズダンスレッスン"></a>
+      </div>
+
+      <!-- サポーターズ -->
+      <div class="row pdT0">
+        <div class="span700" id="top-supporters">
+        <!-- <h2 class="h2Top">サポーターズ</h2> -->
+          <div class="inner center pdT0">
+            <div class="dammy-block-s"><a href="http://www.inaki.co.jp " target="_blank"><img src="./image/dra/support/inaki.gif" width="106" height="30" alt="ゴムノイナキ株式会社" /></a></div>
+            <div class="dammy-block-s"><a href="http://www.kenminkyosai-aichi.or.jp" target="_blank"><img src="./image/dra/support/kenminkyosai-aichi.gif" width="106" height="30" alt="県民共済愛知" /></a></div>
+            <div class="dammy-block-s"><a href="http://joy7.or.jp" target="_blank"><img src="./image/dra/support/joy7.gif" width="106" height="30" alt="ジョイセブン" /></a></div>
+            <div class="dammy-block-s"><a href="http://www.workly.jp/" target="_blank"><img src="./image/dra/support/workly.gif" width="106" height="30" alt="わーくりぃ知多" /></a></div>
+            <div class="dammy-block-s"><a href="http://honda-logi.com/" target="_blank"><img src="./image/dra/support/honda-logi.gif" width="106" height="30" alt="ホンダロジコム株式会社" /></a></div>
+          </div>
+        </div>
+      </div>
+      <!-- /サポーターズ -->
+    </div><!-- /clear -->
+
+  </div>
+</div>
+<!-- #top-contents -->
+
+</div>
+<!--/メイン-->
+<!--フッター-->
+<div id="footer" class="footer">
+<div class="foot-menu-area clearfix">
+<!--「↑ このページの先頭へ」-->
+<div class="to-top">
+<a href="#TOP" class="to-top">このページの先頭へ</a>
+</div>
+<!--/「↑ このページの先頭へ」-->
+<!--フッタ・メニュー-->
+<div class="foot-menu">
+<ul class="foot-menu">
+<li><a href="/news/">ニュース</a></li>
+<li><a href="/game/">試合情報</a></li>
+<li><a href="/ticket/">チケット</a></li>
+<li><a href="/teamdata/">チームデータ</a></li>
+<li><a href="/farm/">ファーム</a></li>
+<li><a href="/fan/">ファンエンタメ</a></li>
+<li><a href="/nagoyadome/">ナゴヤドーム</a></li>
+<li><a href="/shop/">グッズショップ</a></li>
+<li><a href="http://drafanclub.jp/">ファンクラブ</a></li>
+<li><a href="/sponsor/">スポンサー</a></li>
+</ul>
+<ul class="foot-menu">
+<li><a href="/community/">地域貢献活動</a></li>
+<li><a href="/about/mobilesite.html">携帯サイト</a></li>
+<li><a href="/links/">リンク集</a></li>
+<li><a href="/faq/">よくあるご質問</a></li>
+<li><a href="/contact/">お問い合わせ</a></li>
+<li><a href="/sitemap/">サイトマップ</a></li>
+</ul>
+<ul class="foot-menu">
+<li><a href="/termofuse/">ご利用条件</a></li>
+<li><a href="/about/copyright.html">著作権とリンクについて</a></li>
+<li><a href="/privacypolicy/">プライバシーポリシー</a></li>
+<li><a href="/ticket/regulation/">試合観戦にあたって</a></li>
+</ul>
+</div>
+<!--/フッタ・メニュー-->
+</div>
+<!--Copyright-->
+<div id="copyright" class="copyright">COPYRIGHTS(C) 1997～ CHUNICHI DRAGONS ALL RIGHTS RESERVED.</div>
+<!--/Copyright-->
+</div>
+<!--Analytics-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-59441326-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!--/Analytics-->
+
+<!--/フッター-->
+</div>
+
+</body>
+</html>
