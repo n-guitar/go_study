@@ -9,55 +9,41 @@ import (
 	"os"
 )
 
-func s256() {
-	scn := bufio.NewScanner(os.Stdin)
-	for scn.Scan() {
-		if err := scn.Err(); err != nil {
-			fmt.Fprintln(os.Stderr, err)
-		}
-		shaout := sha256.Sum256([]byte(scn.Text()))
-		fmt.Printf("%x\n", shaout)
-	}
+func s256(intxt string) [32]byte {
+	var sha32 [32]byte
+	sha32 = sha256.Sum256([]byte(intxt))
+	return sha32
 }
 
-func s384() {
-	scn := bufio.NewScanner(os.Stdin)
-	for scn.Scan() {
-		if err := scn.Err(); err != nil {
-			fmt.Fprintln(os.Stderr, err)
-		}
-		shaout := sha512.Sum384([]byte(scn.Text()))
-		fmt.Printf("%x\n", shaout)
-	}
+func s384(intxt string) [48]byte {
+	var sha48 [48]byte
+	sha48 = sha512.Sum384([]byte(intxt))
+	return sha48
 }
 
-func s512() {
-	scn := bufio.NewScanner(os.Stdin)
-	for scn.Scan() {
-		if err := scn.Err(); err != nil {
-			fmt.Fprintln(os.Stderr, err)
-		}
-		shaout := sha512.Sum512([]byte(scn.Text()))
-		fmt.Printf("%x\n", shaout)
-	}
+func s512(intxt string) [64]byte {
+	var sha64 [64]byte
+	sha64 = sha512.Sum512([]byte(intxt))
+	return sha64
 }
 
 func main() {
 	var sha string
-	stdin := bufio.NewScanner(os.Stdin)
-	flag.StringVar(&sha, "s", "", "-s (sha256|sha384|sha512)　を引数に指定")
+	flag.StringVar(&sha, "s", "sha256", "-s (sha256|sha384|sha512)　を引数に指定")
 	flag.Parse()
 	shaflag := os.Args[2]
-	switch shaflag {
-	case "sha256":
-		s256()
-		fmt.Print("sha256", stdin, "\n")
-	case "sha384":
-		s384()
-		fmt.Print("sha256", stdin, "\n")
-	case "sha512":
-		s512()
-		fmt.Print("sha512", stdin, "\n")
+	scn := bufio.NewScanner(os.Stdin)
+	for scn.Scan() {
+		if err := scn.Err(); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+		}
+		switch shaflag {
+		case "sha256":
+			fmt.Printf("sha256 :%x\n", s256(scn.Text()))
+		case "sha384":
+			fmt.Printf("sha384 :%x\n", s384(scn.Text()))
+		case "sha512":
+			fmt.Printf("sha512 :%x\n", s512(scn.Text()))
+		}
 	}
-	fmt.Println("-s (sha256|sha384|sha512)　を引数に指定")
 }
