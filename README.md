@@ -86,7 +86,59 @@ httpパッケージでGETした値を、変数に格納し、Bodyをioutilパッ
   # 第7回目 関数
 - Coming Soon!!
 
-
+# 第8回目 認証
+- ex00
+  - 以下の手順を実行し、サンプルプログラムが正常に実行できる事を確認しなさい。
+  - [sampleプログラム](/sample/sample008)
+    ```
+    $ docker-compose up -d
+    $ go run ex00.go
+    ```
+- ex01
+  - ex00のプログラムを修正して、以下のコマンドによりユーザを追加できるようにしなさい。
+    ```
+    $ curl -X POST http://localhost:9999?name=user03&password=password03
+    ```
+  - またユーザが追加できた事を以下のコマンドで確認しなさい。
+    ```
+    $ curl -X GET http://localhost:9999
+    ```
+- ex02
+  - ユーザ名・パスワードの認証情報に対して、特定の組み合せの場合のみ、「OK」とレスポンスを返しなさい。
+  - ただし、特定組み合わせのチェックはif文またはcase文を用いればよい。
+  - 以下のような挙動になるようにしなさい。
+    ```
+    $ curl -X POST http://localhost:9999/auth?name=user01&password=user01
+    OK
+    $ curl -X POST http://localhost:9999/auth?name=user02&password=user02
+    OK
+    $ curl -X POST http://localhost:9999/auth?name=user03&password=user03
+    OK
+    $ curl -X POST http://localhost:9999/auth?name=user04&password=user04
+    NG
+    $ curl -X POST http://localhost:9999/auth?name=stokuda&password=12345
+    NG
+    $ curl -X POST http://localhost:9999/auth?name=user99&password=user99
+    NG
+    ```
+- ex03
+  - ex02のプログラムを修正して、特定組み合わせの場合のみ、「OK」ではなく、
+    name + password の結合文字列を、sha256でハッシュ化して返しなさい。
+    ```
+    $ curl -X POST http://localhost:9999/auth?name=user01&password=user01 
+    4de43d6847096454adf50cc4fed29969343af2e6bcd5e809e57df071d6197468
+    ```
+  - またuser01~user03に関するハッシュ値は後で使うので保存しておきなさい。
+- ex04
+  - ex03のプログラムを修正して、特定組み合わせの場合のチェックを、if文 or case文ではなく
+    DBに格納したユーザ情報との突き合わせによってチェックするようにしなさい。
+- ex05
+  - ex04のプログラムおよびデータベースの中身を修正して、    
+   name、passwordを直に突き合わせするのではなくハッシュ値で突き合わせするようにしなさい。
+  - つまりDBにはユーザの平文のパスワードではなく、ハッシュ値を格納するようにしなさい。
+  - ちなみにデータベースの変更内容も記録できるように、    
+    init.sqlを修正してdocker-composeで作り直せ。    
+    そしてinit.sqlなどもコミットせよ。
 # 自習問題 001 (アルゴリズムとbenchmark関数)
 本問題は『楽しく学ぶ アルゴリズムとプログラミングの図鑑』を参考にしてください。
 - ex01 (P75)
@@ -132,7 +184,4 @@ httpパッケージでGETした値を、変数に格納し、Bodyをioutilパッ
 - ex03
   - 以下のsampleを実施しなさい
   - [docker sample003](/docker/sample003)
-
-
-
 
