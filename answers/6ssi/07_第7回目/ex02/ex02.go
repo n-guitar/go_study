@@ -58,12 +58,41 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			io.WriteString(w, "[ERROR]Either name or password is missing.\n")
 		} else {
 			for i := range nameslc {
-				_, err := db.Exec("INSERT INTO users(name,password) VALUES(?,?)", nameslc[i], passslc[i])
+				rows, err := db.Query("SELECT password FROM users WHERE name = ?", nameslc[i])
 				if err != nil {
-					io.WriteString(w, "[ERROR]Failed to INSERT INTO table.\n")
+					io.WriteString(w, "[ERROR] Failed to check the table.\n")
 				}
+				defer rows.Close()
+				if err != nil {
+					panic(err.Error())
+				}
+				values := make([]sql.RawBytes, 1)
+				scanArgs := make([]interface{}, len(values))
+				for v := range values {
+					scanArgs[v] = &values[v]
+				}
+				for rows.Next() {
+					err = rows.Scan(scanArgs...)
+					if err != nil {
+						panic(err.Error())
+					}
+					for _, password := range values {
+						if passslc[i] == string(password) {
+							io.WriteString(w, "OK\n")
+						} else {
+							io.WriteString(w, "NG\n")
+						}
+					}
+				}
+				/*
+					_, err := db.Exec("INSERT INTO users(name,password) VALUES(?,?)", nameslc[i], passslc[i])
+					if err != nil {
+						io.WriteString(w, "[ERROR]Failed to INSERT INTO table.\n")
+					}
+				*/
+
 			}
-			io.WriteString(w, "[SUCCESS]Your POSTed data was INSERTed INTO table.\n")
+			//io.WriteString(w, "[SUCCESS]Your POSTed data was INSERTed INTO table.\n")
 		}
 	} else {
 		rows, err := db.Query("select * from users")
@@ -81,7 +110,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		for i := range values {
 			scanArgs[i] = &values[i]
 		}
-		io.WriteString(w, "-----------------------------------\n")
 		for rows.Next() {
 			err = rows.Scan(scanArgs...)
 			if err != nil {
