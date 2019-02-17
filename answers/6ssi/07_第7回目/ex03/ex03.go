@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/sha256"
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
@@ -60,11 +61,11 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			for i, pname := range nameslc {
 				switch {
 				case pname == "user01" && passslc[i] == "user01":
-					io.WriteString(w, "OK\n")
+					io.WriteString(w, fmt.Sprintf("%x\n", sha256.Sum256([]byte(pname+passslc[i]))))
 				case pname == "user02" && passslc[i] == "user02":
-					io.WriteString(w, "OK\n")
+					io.WriteString(w, fmt.Sprintf("%x\n", sha256.Sum256([]byte(pname+passslc[i]))))
 				case pname == "user03" && passslc[i] == "user03":
-					io.WriteString(w, "OK\n")
+					io.WriteString(w, fmt.Sprintf("%x\n", sha256.Sum256([]byte(pname+passslc[i]))))
 				default:
 					io.WriteString(w, "NG\n")
 				}

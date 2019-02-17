@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/sha256"
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
@@ -44,10 +45,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	method := r.Method
 	if method == "POST" {
 		var nameslc []string
+		var rnameslc []string
 		var passslc []string
 		query := r.URL.Query()
 		for _, rname := range query["name"] {
 			nameslc = append(nameslc, rname)
+			rnameslc = append(rnameslc, rname)
 		}
 		for _, rpass := range query["password"] {
 			passslc = append(passslc, rpass)
@@ -57,16 +60,45 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		if len(nameslc) != len(passslc) {
 			io.WriteString(w, "[ERROR]Either name or password is missing.\n")
 		} else {
-			for i, pname := range nameslc {
-				switch {
-				case pname == "user01" && passslc[i] == "user01":
-					io.WriteString(w, "OK\n")
-				case pname == "user02" && passslc[i] == "user02":
-					io.WriteString(w, "OK\n")
-				case pname == "user03" && passslc[i] == "user03":
-					io.WriteString(w, "OK\n")
-				default:
+			for i := range nameslc {
+				rows, err := db.Query("SELECT name,password FROM users WHERE name = ?", nameslc[i])
+				if err != nil {
+					io.WriteString(w, "[ERROR] Failed to check the table.\n")
+				}
+				defer rows.Close()
+				if err != nil {
+					panic(err.Error())
+				}
+
+				columns, err := rows.Columns()
+				if err != nil {
+					panic(err.Error())
+				}
+
+				values := make([]sql.RawBytes, len(columns))
+				scanArgs := make([]interface{}, len(values))
+				for v := range values {
+					scanArgs[v] = &values[v]
+				}
+				for rows.Next() {
+					err = rows.Scan(scanArgs...)
+					if err != nil {
+						log.Fatalln(err)
+					}
+
+					for c, col := range values {
+						fmt.Printf("column : %s , value : %s\n", columns[c], string(col))
+						if columns[c] == "password" {
+							if passslc[i] == string(col) {
+								nameslc[i] = fmt.Sprintf("%x", sha256.Sum256([]byte(nameslc[i]+passslc[i])))
+							}
+						}
+					}
+				}
+				if nameslc[i] == rnameslc[i] {
 					io.WriteString(w, "NG\n")
+				} else {
+					io.WriteString(w, nameslc[i]+"\n")
 				}
 			}
 		}
