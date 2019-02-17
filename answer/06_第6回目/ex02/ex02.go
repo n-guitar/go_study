@@ -1,27 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+// 参照：https://qiita.com/high5/items/4e2580241039c950e1c4
+func calc(a int, b int) (int, int, int, float32) {
+	plus := a + b
+	minus := a - b
+	multi := a * b
+	divi := float32(a) / float32(b)
+	return plus, minus, multi, divi
+}
 
 func main() {
 
-	var a = 1
-	// 足し算
-	a += 1
-	fmt.Printf("足し算の問題です。1 + 1 = %v\n", a)
-	v := a
-
-	//　引き算
-	a -= 1
-	fmt.Printf("引き算の問題です。%v - 1 = %v\n", v, a)
-	v = a
-
-	//　掛け算
-	a *= 2
-	fmt.Printf("掛け算の問題です。%v × 2 = %v\n", v, a)
-	v = a
-
-	//　割り算
-	a /= 2
-	fmt.Printf("割り算の問題です。%v ÷ 2 = %v\n", v, a)
+	a := 1
+	b := 2
+	plus, minus, multi, divi := calc(a, b)
+	fmt.Println(plus)
+	fmt.Println(minus)
+	fmt.Println(multi)
+	fmt.Println(divi)
 
 }
