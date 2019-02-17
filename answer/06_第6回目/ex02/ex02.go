@@ -5,7 +5,7 @@ import (
 )
 
 // 参照：https://qiita.com/high5/items/4e2580241039c950e1c4
-func calc(a int, b int) (int, int, int, float32) {
+func calc(a, b int) (int, int, int, float32) {
 	plus := a + b
 	minus := a - b
 	multi := a * b
