@@ -9,7 +9,6 @@ func calc(a int, b int) (int, int, int, float32) {
 	plus := a + b
 	minus := a - b
 	multi := a * b
-
 	divi := float32(a) / float32(b)
 	return plus, minus, multi, divi
 }

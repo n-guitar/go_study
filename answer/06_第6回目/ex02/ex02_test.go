@@ -2,7 +2,7 @@ package main
 
 import "testing"
 
-func TestDuck_name(t *testing.T) {
+func TestDuck(t *testing.T) {
 	duck := &Duck{"tarou"}
 	actual := duck.name
 	expected := "tarou"
