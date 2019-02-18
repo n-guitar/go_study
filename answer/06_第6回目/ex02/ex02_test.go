@@ -5,7 +5,7 @@ import (
 )
 
 // 参照：https://qiita.com/high5/items/4e2580241039c950e1c4
-func calc(a, b int) (int, int, int, float32) {
+func Calc(a, b int) (int, int, int, float32) {
 	plus := a + b
 	minus := a - b
 	multi := a * b
@@ -13,7 +13,7 @@ func calc(a, b int) (int, int, int, float32) {
 	return plus, minus, multi, divi
 }
 
-func Testcalc(t *testing.T) {
+func TestCalc(t *testing.T) {
 
 	a, b := 1, 2
 
@@ -22,7 +22,7 @@ func Testcalc(t *testing.T) {
 	Multi_want := 2
 	Divi_want := float32(0.5)
 
-	plus, minus, multi, divi := calc(a, b)
+	plus, minus, multi, divi := Calc(a, b)
 
 	if plus != Plus_want {
 		t.Errorf("%d is not Plus ans", plus)
@@ -31,6 +31,6 @@ func Testcalc(t *testing.T) {
 	} else if multi != Multi_want {
 		t.Errorf("%d is not Multi ans", multi)
 	} else if divi != Divi_want {
-		t.Errorf("%d is not Divi ans", divi)
+		t.Errorf("%f is not Divi ans", divi)
 	}
 }
