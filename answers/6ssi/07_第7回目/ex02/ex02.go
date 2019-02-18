@@ -3,10 +3,11 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
 	"io"
 	"log"
 	"net/http"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 var db *sql.DB
@@ -58,7 +59,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			io.WriteString(w, "[ERROR]Either name or password is missing.\n")
 		} else {
 			for i := range nameslc {
-				rows, err := db.Query("SELECT password FROM users WHERE name = ?", nameslc[i])
+				rows, err := db.Query("SELECT name,password FROM users WHERE name = ?", nameslc[i])
 				if err != nil {
 					io.WriteString(w, "[ERROR] Failed to check the table.\n")
 				}
@@ -66,7 +67,13 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				if err != nil {
 					panic(err.Error())
 				}
-				values := make([]sql.RawBytes, 1)
+
+				columns, err := rows.Columns()
+				if err != nil {
+					panic(err.Error())
+				}
+
+				values := make([]sql.RawBytes, len(columns))
 				scanArgs := make([]interface{}, len(values))
 				for v := range values {
 					scanArgs[v] = &values[v]
@@ -74,25 +81,24 @@ func handler(w http.ResponseWriter, r *http.Request) {
 				for rows.Next() {
 					err = rows.Scan(scanArgs...)
 					if err != nil {
-						panic(err.Error())
+						log.Fatalln(err)
 					}
-					for _, password := range values {
-						if passslc[i] == string(password) {
-							io.WriteString(w, "OK\n")
-						} else {
-							io.WriteString(w, "NG\n")
+
+					for c, col := range values {
+						fmt.Printf("column : %s , value : %s\n", columns[c], string(col))
+						if columns[c] == "password" {
+							if passslc[i] == string(col) {
+								nameslc[i] = "OK"
+							}
 						}
 					}
 				}
-				/*
-					_, err := db.Exec("INSERT INTO users(name,password) VALUES(?,?)", nameslc[i], passslc[i])
-					if err != nil {
-						io.WriteString(w, "[ERROR]Failed to INSERT INTO table.\n")
-					}
-				*/
-
+				if nameslc[i] == "OK" {
+					io.WriteString(w, "OK\n")
+				} else {
+					io.WriteString(w, "NG\n")
+				}
 			}
-			//io.WriteString(w, "[SUCCESS]Your POSTed data was INSERTed INTO table.\n")
 		}
 	} else {
 		rows, err := db.Query("select * from users")
