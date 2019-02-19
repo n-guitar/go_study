@@ -7,7 +7,7 @@ func plus(a int, b ...int) int {
 }
 
 func plus(a ...int) int {
-	c, _ := exec.Command(command[0], command[1:]...).Output()
+	c, _ := exec.Command(Num[0], Num1:]...).Output()
 	return string(c[:])
 }
 
