@@ -1,27 +1,36 @@
 package main
 
-import "fmt"
+import (
+	"testing"
+)
 
-func main() {
+// 参照：https://qiita.com/high5/items/4e2580241039c950e1c4
+func Calc(a, b int) (int, int, int, float32) {
+	plus := a + b
+	minus := a - b
+	multi := a * b
+	divi := float32(a) / float32(b)
+	return plus, minus, multi, divi
+}
 
-	var a = 1
-	// 足し算
-	a += 1
-	fmt.Printf("足し算の問題です。1 + 1 = %v\n", a)
-	v := a
+func TestCalc(t *testing.T) {
 
-	//　引き算
-	a -= 1
-	fmt.Printf("引き算の問題です。%v - 1 = %v\n", v, a)
-	v = a
+	a, b := 1, 2
 
-	//　掛け算
-	a *= 2
-	fmt.Printf("掛け算の問題です。%v × 2 = %v\n", v, a)
-	v = a
+	Pluswant := 3
+	Minuswant := -1
+	Multiwant := 2
+	Diviwant := float32(0.5)
 
-	//　割り算
-	a /= 2
-	fmt.Printf("割り算の問題です。%v ÷ 2 = %v\n", v, a)
+	plus, minus, multi, divi := Calc(a, b)
 
+	if plus != Pluswant {
+		t.Errorf("%d is not Plus ans", plus)
+	} else if minus != Minuswant {
+		t.Errorf("%d is not Minus ans", minus)
+	} else if multi != Multiwant {
+		t.Errorf("%d is not Multi ans", multi)
+	} else if divi != Diviwant {
+		t.Errorf("%f is not Divi ans", divi)
+	}
 }
